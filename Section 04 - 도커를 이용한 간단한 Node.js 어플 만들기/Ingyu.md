@@ -18,6 +18,7 @@ npm init을 입력하면 여러 가지 입력하라는 문구가 나오는데
 dependencies에 express 부분만 추가하면 됩니다.
 
 express란? [https://velog.io/@madpotato1713/JAVASCRIPT-express%EB%9E%80](https://velog.io/@madpotato1713/JAVASCRIPT-express%EB%9E%80)
+> Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크 
 
 ![image](https://user-images.githubusercontent.com/68156400/124755986-f54c2b00-df66-11eb-83b4-c9028dedbd60.png)
 
@@ -179,5 +180,6 @@ docker run -p 5000:8080 -v /usr/src/app/node\_modules -v $(pwd):/usr/src/
 아래와 같이 이미지를 다시 빌드하지 않아도 코드의 내용이 수정되는 것을 알 수 있습니다.
 
 이젠, 매 번 이미지를 빌드하지 않고, volume 옵션을 준 후, 컨테이너를 재실행하면 됩니다!
+> 명령어 : docker restart <컨테이너 이름> 
 
 ![image](https://user-images.githubusercontent.com/68156400/124756646-a783f280-df67-11eb-9851-12804b32f5ce.png)
