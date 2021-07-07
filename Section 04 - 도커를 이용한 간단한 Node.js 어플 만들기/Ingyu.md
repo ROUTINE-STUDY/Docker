@@ -204,3 +204,9 @@ docker run -p 5000:8080 -v /usr/src/app/node\_modules -v $(pwd):/usr/src/
 > 명령어 : docker restart <컨테이너 이름> 
 
 ![image](https://user-images.githubusercontent.com/68156400/124756646-a783f280-df67-11eb-9851-12804b32f5ce.png)
+
+
+---
+> 섹션 4를 보고 가장 중요하다고 생각하는 부분과 느낀점을 정리하였습니다.
+
+![image](https://user-images.githubusercontent.com/57741093/124763710-3d6f4b80-df6f-11eb-97a7-ab7fc07dc865.png)
