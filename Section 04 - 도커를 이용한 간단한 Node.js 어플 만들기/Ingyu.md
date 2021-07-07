@@ -1,69 +1,90 @@
+# Section 04 - 도커를 이용한 간단한 Node.js 어플 만들기/
+
+본 정리는 인프런 - [따라하며 배우는 도커와 CI환경](https://www.inflearn.com/course/%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B0-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8F%84%EC%BB%A4-ci/dashboard) 강의를 학습하며 정리한 자료입니다.  
+보다 자세하고 친절한 설명은 위 강의에 제공되어 있습니다.
+## 이번 시간에는 node를 이용한 간단한 어플리케이션을 만들도록 하겠습니다. ##
 ![image](https://user-images.githubusercontent.com/68156400/124755879-da79b680-df66-11eb-985f-bc76fc614a28.png)
 
-1.우선 노드 어플리케이션을 만들 디렉토리를 만듭니다.
+***1.우선 노드 어플리케이션을 위한 디렉토리를 만듭니다.***
 
 ![image](https://user-images.githubusercontent.com/68156400/124755899-e2d1f180-df66-11eb-9745-b7eaa340a7c0.png)
 
-2.Visual Studio code로 해당 디렉터리를 열고 터미널에 npm init을 입력하여 package.json을 만들어 줍니다.
+<hr>
 
-npm init을 입력하면 여러 가지 입력하라는 문구가 나오는데
-
-본 예제에서는 그냥 전부 엔터 치고 넘겼습니다.
+***2. 프로젝트에 의존성을 관리하는 package.json을 만듭니다.***
+ - Visual Studio code로 해당 디렉터리를 엽니다.
+ - 터미널을 실행하여. npm init을 입력합니다. 
+ - npm init으로 인해, package.json이 만들어집니다.
+ - npm init을 입력하면 여러 가지 입력하라는 문구가 나오는데, 본 예제에서는 그냥 전부 엔터 치고 넘겼습니다.
 
 ![image](https://user-images.githubusercontent.com/68156400/124755939-ee251d00-df66-11eb-99a7-f503e8ef3df9.png)
+<hr>
 
-
-3.nodejs를 위한 설정을 입력합니다.
-
-dependencies에 express 부분만 추가하면 됩니다.
-
-express란? [https://velog.io/@madpotato1713/JAVASCRIPT-express%EB%9E%80](https://velog.io/@madpotato1713/JAVASCRIPT-express%EB%9E%80)
-> Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크 
+***3. 의존성에 express를 추가해줍니다.***
+ - dependencies에 "express" : "버전"을 추가하면 됩니다.
+ - express에 대한 자세한 정보는 [express란?](https://velog.io/@madpotato1713/JAVASCRIPT-express%EB%9E%80)에서 알아보도록 합시다. 본 게시물은 Docker의 실습을 위해 nodejs를 다룰 뿐이므로, nodejs에 대한 내용은 깊게 다루지 않습니다.
 
 ![image](https://user-images.githubusercontent.com/68156400/124755986-f54c2b00-df66-11eb-83b4-c9028dedbd60.png)
 
-4.server.js 파일을 추가해줍니다. 해당 파일은 express의 사용을 위해 필요한 파일입니다.
+<hr>
+
+***4.server.js 파일을 추가해줍니다. 해당 파일은 express의 사용을 위해 필요한 파일입니다.***
 
 ![image](https://user-images.githubusercontent.com/68156400/124756025-fe3cfc80-df66-11eb-9d8c-bb976f9641ed.png)
 
-5.Dockerfile을 작성합니다.
+<hr>
 
-baseImage는 저희는 노드를 운영할 것이므로 node:10
+***5.Dockerfile을 작성합니다.***
 
-노드를 실행하는데에는 npm이 필요하므로 Run에는 npm install
+ - baseImage는 노드를 운영할 것이므로 node:10
 
-컨테이너 시작 시 실행 될 명령어 "node"와 "server.js"를 입력해줍니다.
+ - RUN에는 노드를 실행하는데에는 npm이 필요하므로 npm install
+
+ - CMD에는 컨테이너 시작 시 실행 될 명령어 "node"와 "server.js"를 입력해줍니다.
 
 ![image](https://user-images.githubusercontent.com/68156400/124756041-039a4700-df67-11eb-87eb-e6d30753817f.png)
 
-6.실행 흐름을 보면 아래와 같습니다.
+<hr>
 
-baseLine인 node10에서 npm install로 필요한 파일들을 다운 받고,
+***6.실행 흐름을 보면 아래와 같습니다.***
 
-저장된 명령어인 node, server.js를 실행합니다.
+ - baseLine인 node10에서 npm install로 필요한 파일들을 다운 받고,
+
+ - 저장된 명령어인 node, server.js를 실행합니다.
 
 ![image](https://user-images.githubusercontent.com/68156400/124756062-0a28be80-df67-11eb-8530-d0479ef77c3c.png)
 
-7.visual studio에서 docker build -t 유저네임/프로젝트네임:버전 ./(docker파일 위치)를 실행해줍니다.
+<hr>
 
-그러나 막상 해당 문구를 실행하면 package.json이라는 파일이 없다면서 오류가 나는 것을 볼 수 있습니다.
+***7.이제 설정된 파일로 이미지를 빌드해줍니다.***
+ - visual studio에서 ```docker build -t 유저네임/프로젝트네임:버전 ./(docker파일 위치)``` 명령어를 실행해줍니다.
+ - 그러나 막상 해당 문구를 실행하면 package.json이라는 파일이 없다면서 오류가 나는 것을 볼 수 있습니다.
 
 ![image](https://user-images.githubusercontent.com/68156400/124756093-114fcc80-df67-11eb-9b09-4171dd2950c1.png)
 
-8.왜냐면 build가 된 것은 Dockerfile뿐이며, 나머지 server.js나 package.json 파일이 포함되지가 않았기 때문입니다.
+<hr>
 
-따라서 npm install을 베이스라인인 node:10에서 실행하지만, npm install을 하기 위해선 package.json이 필요하므로, 오류가 발생하게 됩니다.
-
+***8.오류의 원인***
+ - 왜냐면 build가 된 것은 Dockerfile뿐이기 때문입니다.
+ - 나머지 server.js나 package.json 파일이 포함되지가 않았습니다.
+ - 해당 파일들이 없으므로 npm install을 베이스라인인 node:10에서 실행하지만, npm install을 하기 위해 필요한 package.json이 없으므로 오류가 발생합니다.
 ![image](https://user-images.githubusercontent.com/68156400/124756124-190f7100-df67-11eb-907c-8f1d35e4ed95.png)
 
-8.오류를 제거하기 위해 package.json 파일을 빌드할 때 복사하도록 설정합니다.
+<hr>
 
-(코드에선 package-lock.json에 복사를 위해 package\*.json을 입력했지만 docker를 공부할 때 중요한 건 아니니 넘어갑니다.)
+
+***9.package.json 파일을 빌드할 때 복사하도록 설정합니다.***
+
+ - Dockefile로 들어갑니다.
+ - FROM 밑예 COPY로 ```COPY ./package*.json ./```을 추가해줍니다.
+ - 코드에선 package\*.json을 입력했지만 docker를 공부할 때 중요한 건 아니니 넘어갑니다.(package-lock.json 등을 위해서 설정함)
+
 
 ![image](https://user-images.githubusercontent.com/68156400/124756184-24fb3300-df67-11eb-8198-577e578c1aab.png)
 
+<hr>
 
-9.이제 다시 빌드를 위해 docker build 명령어를 사용합니다.
+***10.이제 다시 빌드를 위해 docker build 명령어를 사용합니다.***
 
 Dockerfile에 입력한 순서대로 node에서 package.json 파일을 복사한 후,
 
