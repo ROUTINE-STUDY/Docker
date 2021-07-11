@@ -7,3 +7,5 @@
 - Section 01 - 도커 기본
 - Section 02 - 기본적인 도커 클라이언트 명령어 알아보기
 - Section 03 - 직접 도커 이미지를 만들어 보기
+- Section 04 - 도커를 이용한 간단한 Node.js 어플 만들기
+- Section 05 - Docker Compose
