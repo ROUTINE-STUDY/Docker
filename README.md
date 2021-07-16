@@ -9,3 +9,4 @@
 - Section 03 - 직접 도커 이미지를 만들어 보기
 - Section 04 - 도커를 이용한 간단한 Node.js 어플 만들기
 - Section 05 - Docker Compose
+- Section 06 - 간단한 어플을 실제로 배포해보기(개발 환경 부분)
